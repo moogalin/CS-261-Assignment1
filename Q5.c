@@ -25,6 +25,7 @@ void sticky(char* word) {
 int main() {
 	/*Read word from the keyboard using scanf*/
 
+
 	/*Call sticky*/
 
 	/*Print the new word*/

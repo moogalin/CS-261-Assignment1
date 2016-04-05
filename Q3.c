@@ -34,10 +34,10 @@ int main() {
 
 	/*Allocate memory for an array of n integers using malloc.*/
 	int * pArray;
-	pArray = (int *)malloc(n * sizeof(int));
+	//pArray = (int *)malloc(n * sizeof(int));
+	pArray = malloc(n * sizeof(int));
 
-	/*Fill this array with random numbers, using rand().*/
-
+	/*Fill this array with random numbers between 1 and 100, using rand().*/
 	for (int i = 0; i < (n); i++) {
 		pArray[i] = (rand() % 100 + 1);
 	}

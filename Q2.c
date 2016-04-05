@@ -37,7 +37,7 @@ int main() {
 	printf("The value of z is %d.\n\n", z);
 
 	/*Call foo() appropriately, passing x,y,z as parameters*/
-	int fooVal = foo(&x, &y, &z);
+	int fooVal = foo(&x, &y, z);
 
 	/*Print the value returned by foo*/
 	printf("The value returned by foo is %d.\n\n", fooVal);
@@ -48,11 +48,14 @@ int main() {
 	printf("The value of z is now %d.\n\n", z);
 
 
-	/*Is the return value different than the value of z?  Why?*/
-	printf("The return value is different for x and y but not z.\n");
-	printf("This is because x and y were passed by reference and changed within the foo function.\n");
-	printf("They were changed because foo had access to their real memory location.\n");
-	printf("The value of z was not changed because z was passed by value and only a copy of z could be changed in foo.");
+	/*Is the return value different than the value of z?  Why?
+	*
+	* Yes, the return value of the function foo is different than the value of variable 'Z'. 
+	* Because 'Z' was passed by value to foo, a local copy of 'Z' was used within foo. 
+	* Even though 'C' ('Z') was changed within foo, the changes were performed on the local copy, 
+	* not on original variable 'Z'. Thus, the return value 'C' represents the changes made to the 'Z'
+	* copy, but variable 'Z' carries the same integer value that it did before the call to foo. 
+	*/
 
 	return 0;
 }

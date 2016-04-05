@@ -9,6 +9,8 @@
 #include<stdlib.h>
 #include<math.h>
 
+#define NUM_STUDENTS 10
+
 struct student {
 	int id;
 	int score;
@@ -16,39 +18,56 @@ struct student {
 
 struct student* allocate() {
 	/*Allocate memory for ten students*/
-	int numStudents = 10;
-	struct student * ptrStuds;
-	ptrStuds = (struct student *) malloc(numStudents * sizeof(struct student));
-
+	struct student * students = malloc(NUM_STUDENTS * sizeof(struct student));
 
 	/*return the pointer*/
-	return ptrStuds;
+	return students;
+
 }
 
 void generate(struct student* students) {
 	/*Generate random and unique ID and scores for ten students, ID being between 1 and 10, scores between 0 and 100*/
-	(students + 0)->id = 1;
-	(students + 2)->id = 2;
-	(students + 3)->id = 3;
-	(students + 4)->id = 4;
-	(students + 5)->id = 5;
-	(students + 6)->id = 6;
-	(students + 7)->id = 7;
-	(students + 8)->id = 8;
-	(students + 9)->id = 9;
-	(students + 1)->id = 10;
+	int arrIDs[10];
+	int arrScores[100];
+	int randID;
+	int randScore;
+	int unique = 0;	// bool variable to ensure ID and score is unique
 
-	students[0].score = 10;
-	students[1].score = 20;
-	students[2].score = 30;
-	students[3].score = 40;
-	students[4].score = 50;
-	students[5].score = 60;
-	students[6].score = 70;
-	students[7].score = 80;
-	students[8].score = 90;
-	students[9].score = 100;
+	/* Generate array of possible IDs*/
+	for (int i = 0; i < 10; i++) {
+		arrIDs[i] = i + 1;
+	}
 
+	/* Generate array of possible Scores*/
+	for (int i = 0; i < 100; i++) {
+		arrScores[i] = i + 1;
+	}
+
+
+	for (int i = 0; i < NUM_STUDENTS; i++) {
+
+		/* At least once, generate random number for ID*/
+		do {
+			randID = rand() % 10 + 1;
+
+			if (arrIDs[randID - 1]) { /* If random number is in array, then ID is unique */
+				students[i].id = randID;
+				arrIDs[randID - 1] = 0;	/* Remove assigned ID from array */
+				unique = 1;
+			}
+			else {
+				unique = 0;
+			}
+		} while (!unique); /* Unique ID generated for given student */
+
+		/* Generate random score for student (not unique) */
+		randScore = rand() % 100 + 1;
+		students[i].score = randScore;
+
+		/* For next iteration of loop, ensure that unique flag is not set*/
+		unique = 0;
+
+	}
 }
 
 void output(struct student* students) {
@@ -58,13 +77,44 @@ void output(struct student* students) {
 	ID3 score3
 	...
 	ID10 score10*/
-	for (int i = 0; i < 10; i++) {
-		printf("ID: %g Score: %g \n", ((students + i)->id),  (students + i)->score);
+
+	for (int i = 0; i < NUM_STUDENTS; i++) {
+		printf("%d %d \n", students[i].id, students[i].score);
 	}
+
 }
 
 void summary(struct student* students) {
 	/*Compute and print the minimum, maximum and average scores of the ten students*/
+
+	/* Compute Minimum and Maximum */
+
+	int smallest = students[0].score;
+	int largest = students[0].score;
+	int sum = 0;
+	int average;
+
+	for (int i = 0; i < NUM_STUDENTS; i++) {
+
+		if (students[i].score < smallest) {
+			smallest = students[i].score;
+		}
+
+		if (students[i].score > largest) {
+			largest = students[i].score;
+		}
+
+		sum += students[i].score;
+	}
+
+	/* Compute Average */
+	average = sum / NUM_STUDENTS;
+
+
+	/* Print Minimum, Maximum, and Average */
+	printf("The minimum score is %d\n", smallest);
+	printf("The maximum score is %d\n", largest);
+	printf("The average score is %d\n", average);
 
 }
 
@@ -90,7 +140,6 @@ int main() {
 
 	/*call deallocate*/
 	deallocate(stud);
-
 
 
 	return 0;

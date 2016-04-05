@@ -13,6 +13,7 @@
 #include <stdlib.h>
 
 void fooA(int* iptr) {
+
 	/*Print the value pointed to by iptr*/
 	printf("The value pointed to by 'iptr' is %d \n", (*iptr));
 
@@ -26,7 +27,7 @@ void fooA(int* iptr) {
 int main() {
 
 	/*declare an integer x*/
-	int x = 5;
+	int x = 5; // Arbitrary integer value of 5 assigned to 'x' for demonstrative purposes
 
 	/*print the address of x*/
 	printf("The address of 'x' is %p \n", &x);
