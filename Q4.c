@@ -41,7 +41,6 @@ int main() {
 
 	/*Generate random IDs and scores for the n students, using rand().*/
 	int arrIDs[10];
-	int arrScores[100];
 	int randID;
 	int randScore;
 	int unique = 0;	// bool variable to ensure ID and score is unique
@@ -50,12 +49,6 @@ int main() {
 	for (int i = 0; i < 10; i++) {
 		arrIDs[i] = i + 1;
 	}
-
-	/* Generate array of possible Scores*/
-	for (int i = 0; i < 100; i++) {
-		arrScores[i] = i + 1;
-	}
-
 
 	for (int i = 0; i < n; i++) {
 

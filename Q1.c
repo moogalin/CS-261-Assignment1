@@ -28,7 +28,6 @@ struct student* allocate() {
 void generate(struct student* students) {
 	/*Generate random and unique ID and scores for ten students, ID being between 1 and 10, scores between 0 and 100*/
 	int arrIDs[10];
-	int arrScores[100];
 	int randID;
 	int randScore;
 	int unique = 0;	// bool variable to ensure ID and score is unique
@@ -37,12 +36,6 @@ void generate(struct student* students) {
 	for (int i = 0; i < 10; i++) {
 		arrIDs[i] = i + 1;
 	}
-
-	/* Generate array of possible Scores*/
-	for (int i = 0; i < 100; i++) {
-		arrScores[i] = i + 1;
-	}
-
 
 	for (int i = 0; i < NUM_STUDENTS; i++) {
 
